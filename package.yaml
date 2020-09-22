@@ -1,6 +1,6 @@
-name:                prowl-problem
+name:                haskell-design-exercises
 version:             0.1.0.0
-github:              "ssanj/prowl-problem"
+github:              "ssanj/haskell-design-exercises"
 license:             BSD3
 author:              "sanjiv sahayam"
 maintainer:          "sanjsmailbox@gmail.com"
@@ -17,16 +17,22 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/ssanj/prowl-problem#readme>
+description:         Please see the README on GitHub at <https://github.com/ssanj/haskell-design-exercises#readme>
 
 dependencies:
 - base >= 4.7 && < 5
 
 library:
   source-dirs: src
+  dependencies:
+  - process
+  - text
+  - directory
+  - tagged
+  - containers
 
 executables:
-  prowl-problem-exe:
+  haskell-design-exercises-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -34,10 +40,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - prowl-problem
+    - haskell-design-exercises
 
 tests:
-  prowl-problem-test:
+  haskell-design-exercises-test:
     main:                Driver.hs
     source-dirs:         test
     ghc-options:
@@ -45,7 +51,7 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - prowl-problem
+    - haskell-design-exercises
     - tasty
     - tasty-discover
     - tasty-hunit

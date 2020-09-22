@@ -1,6 +1,11 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
-import Lib
+import PD1
 
 main :: IO ()
-main = someFunc
+main = do
+  let path = error "define your path"
+  result <- findLanguage (ProjectDir path) languageMappings findFilesInDirIO
+  putStrLn $ maybe "No languages found" show result
