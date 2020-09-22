@@ -6,6 +6,7 @@ module PD1 where
 import Data.List.NonEmpty (NonEmpty, (<|))
 import System.Directory   (listDirectory)
 import Data.Foldable      (find)
+import Data.Function      ((&))
 
 import qualified Data.Text    as T
 import qualified Data.Text.IO as T
@@ -58,5 +59,5 @@ findLanguage projDir lbFiles fileFinder = do
 hasLanguageBuildFile :: [File] -> LanguageBuildFiles -> Bool
 hasLanguageBuildFile [] _ = False
 hasLanguageBuildFile (x:xs) lb@(LanguageBuildFiles l bf) =
-  let maybeFound = find (\(BuildFile f) -> f x) bf
+  let maybeFound = find ((x &) . _buildFile) bf
   in maybe (hasLanguageBuildFile xs lb) (const True) maybeFound
