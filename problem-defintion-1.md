@@ -21,7 +21,3 @@ You need to be able to test the following conditions
 - The project directory has many matching languages but returns the first match
 - The project directory matches a Haskell project by ".cabal" file
 - The project directory matches a Haskell project by "stack.yaml" file
-
-
-
-

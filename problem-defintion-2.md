@@ -1,13 +1,13 @@
 # Problem Definition 2
 
-You are given a checkout directory, a folder path and a config directory. Together the checkout directory + folder path is the project directory. you need to look for an executable script (`script.sh`) in the following order:
+You are given a checkout directory, a folder path and a config directory. Together the checkout directory + folder path form the project directory. You need to look for an executable script (`script.sh`) in the following order:
 
 - Look for the script in the config folder under the supplied folder path. if found execute it and return the result
 
 Eg:
 ```
 projectDir = checkoutDir/some/folder/path
-config/some/folder/path/script.sh -- script found, so execute it
+configDir/some/folder/path/script.sh -- script found, so execute it
 ```
 
 - If that fails then you need to search the project for build file that matches a particular language. The build file may not be found.
@@ -22,19 +22,19 @@ If the build file is found you need to see if an executable script exists in the
 Eg:
 ```
 projectDir/some/folder/path/stack.yaml -- Haskell build file found
-config/haskell/script.sh -- if this file exists then execute it
+configDir/haskell/script.sh -- if this file exists then execute it
 ```
 
 - If a matching executable is not found in the config directory for the language, execute a default handler in the root of the config directory that outputs the following the message to stdout: "no setup needed"
 
 Eg:
 ```
-config/script.sh -- execute this default file
+configDir/script.sh -- execute this default file
 ```
 
 The solution needs to be easily updated to include more languages (and build files).
 
-Don't handle an file or execution errors at this point. Assume the default script exists and is executable.
+Don't handle an file or execution errors at this point. Assume the default script exists and all scripts are executable.
 
 ## Testing Criteria
 
