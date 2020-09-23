@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 68813deb63774fd6ad626102f48d6aa8373f32f2a460b1993a1d3bfdb07c2f14
+-- hash: 683ebd5c6bf1e02c28a17e6ee01f665fb21a93099219988a08c62dc455c0876a
 
 name:           haskell-design-exercises
 version:        0.1.0.0
@@ -66,6 +66,7 @@ test-suite haskell-design-exercises-test
   main-is: Driver.hs
   other-modules:
       PD1Spec
+      PD2Spec
       SampleSpec
       Paths_haskell_design_exercises
   hs-source-dirs:
@@ -79,4 +80,5 @@ test-suite haskell-design-exercises-test
     , tasty-discover
     , tasty-hedgehog
     , tasty-hunit
+    , text
   default-language: Haskell2010

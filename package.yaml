@@ -57,3 +57,4 @@ tests:
     - tasty-hunit
     - tasty-hedgehog
     - hedgehog
+    - text
