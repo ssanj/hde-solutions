@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d1bc6ac22b986c5cfb57ba47ff3752cdf90575f1e8f3f53d51252d5c38148b5a
+-- hash: c558ef350b968bcacae07b535c39553003e6d13b65f8cc6ec9ae6ec68f4d0c27
 
 name:           haskell-design-exercises
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       PD1
+      PD2
   other-modules:
       Paths_haskell_design_exercises
   hs-source-dirs:

@@ -2,7 +2,7 @@
 
 You are given a checkout directory, a folder path and a config directory. Together the checkout directory + folder path form the project directory. You need to look for an executable script (`script.sh`) in the following order:
 
-- Look for the script in the config folder under the supplied folder path. if found execute it and return the result
+- Look for the script in the config folder under the supplied folder path. If found execute it and return the result
 
 Eg:
 ```
