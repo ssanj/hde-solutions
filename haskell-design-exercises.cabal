@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7044be4a9578c7ec1e4655751f65b4d06eb73212e2ef845b2150a5efe6b8a7d2
+-- hash: 4d80a39e985b9d0fde883959ec2e7a48737b76ddfff8278176881aefc772fd51
 
 name:           haskell-design-exercises
 version:        0.1.0.0
@@ -66,9 +66,10 @@ test-suite haskell-design-exercises-test
   type: exitcode-stdio-1.0
   main-is: Driver.hs
   other-modules:
-      PD1Spec
+      PD1.PD1Spec
+      PD2.PD2Spec
+      PD2.ScriptSpec
       PD2.Support
-      PD2Spec
       SampleSpec
       Paths_haskell_design_exercises
   hs-source-dirs:

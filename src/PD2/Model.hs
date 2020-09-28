@@ -13,9 +13,9 @@ data Language = Scala
 
 newtype BuildFile = BuildFile { _buildFile :: File -> Bool }
 
-newtype File = File { _file :: T.Text }
+newtype File = File { _file :: T.Text } deriving stock (Eq, Show)
 
-newtype Directory = Directory { _dir :: T.Text }
+newtype Directory = Directory { _dir :: T.Text }  deriving stock (Eq, Show)
 
 data LanguageBuildFiles = LanguageBuildFiles { _language :: Language, _buildFiles :: NonEmpty BuildFile }
 

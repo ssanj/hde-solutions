@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module PD2Spec where
+module PD2.PD2Spec where
 
 import PD2
 import PD2.Support

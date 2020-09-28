@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module PD1Spec where
+module PD1.PD1Spec where
 
 import Data.Functor.Identity
 import Prelude hiding (reverse)
