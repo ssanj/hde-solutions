@@ -17,7 +17,7 @@ Assume the following languages and build files:
   - Ruby    -> Gemfile
   - Haskell -> Any .cabal file or a stack.yaml file
 
-If the build file is found you need to see if an executable script exists in the config directory for the language. If one is found you need to execute it and return the result (lines of output text)
+If the build file is found you need to see if an executable script exists in the config directory for the language. The language script is found under `config/language` where the language name is lowercased. If one is found you need to execute it and return the result (lines of output text)
 
 Eg:
 ```
@@ -40,9 +40,16 @@ The output of each script needs to be verified (if run)
 
 ## Testing Criteria
 
-You need to be able to test the following conditions
+You need to be able to test the following conditions:
 
-- If the project directory has a corresponding folder path in the config directory with an executable script, it gets executed and the output result is as expected.
-- If the project directory has a corresponding folder path in the config directory without an executable script, fall back to language-based execution.
-- If the project directory has no matching languages, and the default script should be executed and the output verified to be "no setup needed".
-- If the project directory matches the Scala language and has a matching script under configDir/scala folder. Verify that the script for scala is executed and the output verified.
+### case: Has a project script
+
+If the project directory has a corresponding folder path in the config directory with an executable script, it gets executed and the output result is as expected. Ensure no other scripts are executed and languages are not searched for.
+
+### case: No project script, has language script
+
+Look for a matching language in the project folder and execute the script in the config/language folder if found.
+
+### case: No project script, no language script, run default script
+
+If either the language or language script is not found then the default script should be executed and the output verified.
