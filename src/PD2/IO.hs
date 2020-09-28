@@ -3,6 +3,7 @@
 module PD2.IO where
 
 import PD2.Model
+import PD2.Wiring
 
 import System.Directory   (listDirectory, doesFileExist)
 
@@ -23,11 +24,14 @@ processOpsIO =
   , _defaultAction = defaultActionIO
   }
 
+projectOpsIO :: ProjectOps IO
+projectOpsIO = defaultProjectOps fileOpsIO processOpsIO
+
 fileMatcherIO :: File -> IO Bool
 fileMatcherIO = doesFileExist . T.unpack . _file
 
 defaultActionIO :: ConfigDir -> IO T.Text
-defaultActionIO = pure . const "no setup needed"
+defaultActionIO configDir = scriptRunnerIO (configDirToDir configDir) scriptFile
 
 scriptRunnerIO :: Directory -> File -> IO T.Text
 scriptRunnerIO (Directory wd) (File script) =

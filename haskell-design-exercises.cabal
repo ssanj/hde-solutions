@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 1623b27c48b878cbecc145ba954805c806570f4f8df6634492920f5f8cc5bd92
+-- hash: 918f533b3f63780202c20f3ee42e33b34ad51f39b5e04fd090502a1ba95ff305
 
 name:           haskell-design-exercises
 version:        0.1.0.0
@@ -60,6 +60,7 @@ executable haskell-design-exercises-exe
   build-depends:
       base >=4.7 && <5
     , haskell-design-exercises
+    , text
   default-language: Haskell2010
 
 test-suite haskell-design-exercises-test

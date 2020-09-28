@@ -59,5 +59,11 @@ joinProject (ProjectDir (CheckoutDir dir) (RepoPath paths)) = Directory $ T.inte
 scriptFile :: File
 scriptFile = File "script.sh"
 
+configDirToDir :: ConfigDir -> Directory
+configDirToDir (ConfigDir dir) = Directory dir
+
+configDirFile :: ConfigDir -> File -> File
+configDirFile (ConfigDir dir) = appendPath (Directory dir)
+
 appendPath :: Directory -> File -> File
 appendPath (Directory dir) (File file) = File $ T.intercalate "/" [dir, file]

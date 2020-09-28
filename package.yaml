@@ -41,6 +41,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - haskell-design-exercises
+    - text
 
 tests:
   haskell-design-exercises-test:

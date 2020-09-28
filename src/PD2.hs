@@ -4,13 +4,11 @@
 module PD2 (
    module PD2.Model
 ,  module PD2.Language
-,  fileOpsIO
 ,  projectSetup
 )where
 
 import PD2.Model
 import PD2.Language
-import PD2.IO (fileOpsIO)
 
 import Data.List.NonEmpty (NonEmpty, (<|), toList)
 import System.Directory   (listDirectory, doesFileExist)
@@ -31,4 +29,3 @@ projectSetup (ProjectOps hasProjectScript findLanguage xProjectScript xLanguageS
         maybeLang <- findLanguage projectDir lbMapping
         maybe (xDefaultScript configDir) (xLanguageScript configDir) maybeLang
     (Just _) -> xProjectScript configDir repoPath
-
