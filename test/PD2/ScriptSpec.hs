@@ -5,6 +5,7 @@ module PD2.ScriptSpec where
 
 import PD2.Model
 import PD2.Script
+import PD2.Support
 
 import Data.List.NonEmpty    ((<|))
 import Data.Functor.Identity (Identity(..), runIdentity)
@@ -31,3 +32,26 @@ unit_hasScript_script_not_found =
   in actual @?= expected
 
 
+unit_executeLanguageScript_has_script :: Assertion
+unit_executeLanguageScript_has_script =
+  let
+      configDir  = ConfigDir "some_config_dir"
+      language   = Ruby
+      output     = "some dynamic output"
+      fileOps    = withFileMatcher True
+      processOps = withProcessOps output undefined
+      expected   = Identity output
+      actual     = executeLanguageScript fileOps processOps configDir language
+  in actual @?= expected
+
+unit_executeLanguageScript_no_script :: Assertion
+unit_executeLanguageScript_no_script =
+  let
+      configDir  = ConfigDir "some_config_dir"
+      language   = Ruby
+      output     = "some default output"
+      fileOps    = withFileMatcher False
+      processOps = withProcessOps undefined output
+      expected   = Identity output
+      actual     = executeLanguageScript fileOps processOps configDir language
+  in actual @?= expected

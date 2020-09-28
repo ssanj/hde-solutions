@@ -49,6 +49,30 @@ withNoMatches output =
   , _executeDefaultScript  = \_   -> pure output
   }
 
+withFileMatcher :: Bool -> FileOps Identity
+withFileMatcher result = defaultFileOps { _fileMatcher = \_ -> pure result }
+
+withProcessOps :: T.Text -> T.Text -> ProcessOps Identity
+withProcessOps scriptOutput defaultOutput =
+  defaultProcessOps {
+    _scriptRunner  = \_ _ -> pure scriptOutput
+  , _defaultAction = \_   -> pure defaultOutput
+  }
+
+defaultFileOps :: FileOps Identity
+defaultFileOps =
+  FileOps {
+    _fileMatcher       = undefined
+  , _projectFileFinder = undefined
+  }
+
+defaultProcessOps :: ProcessOps Identity
+defaultProcessOps =
+  ProcessOps {
+    _scriptRunner  = undefined
+  , _defaultAction = undefined
+  }
+
 defaultProjectOps :: ProjectOps Identity
 defaultProjectOps =
   ProjectOps {
