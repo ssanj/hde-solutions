@@ -14,15 +14,20 @@ fileOpsIO =
   FileOps {
     _fileMatcher       = fileMatcherIO
   , _projectFileFinder = findProjectFilesInDirIO
-  , _scriptRunner      = scriptRunnerIO
-  , _defaultAction     = defaultActionIO
+  }
+
+processOpsIO :: ProcessOps IO
+processOpsIO =
+  ProcessOps {
+    _scriptRunner  = scriptRunnerIO
+  , _defaultAction = defaultActionIO
   }
 
 fileMatcherIO :: File -> IO Bool
 fileMatcherIO = doesFileExist . T.unpack . _file
 
-defaultActionIO :: IO T.Text
-defaultActionIO = pure "no setup needed"
+defaultActionIO :: ConfigDir -> IO T.Text
+defaultActionIO = pure . const "no setup needed"
 
 scriptRunnerIO :: Directory -> File -> IO T.Text
 scriptRunnerIO (Directory wd) (File script) =

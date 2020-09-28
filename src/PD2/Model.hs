@@ -33,10 +33,22 @@ data FileOps m =
   FileOps {
     _fileMatcher :: File -> m Bool
   , _projectFileFinder :: ProjectDir -> m [File]
-  , _scriptRunner :: Directory -> File -> m T.Text
-  , _defaultAction :: m T.Text
 }
 
+data ProcessOps m =
+  ProcessOps {
+    _scriptRunner  :: Directory -> File -> m T.Text
+  , _defaultAction :: ConfigDir         -> m T.Text
+  }
+
+data ProjectOps m =
+  ProjectOps {
+    _hasProjectScript      :: ConfigDir  -> RepoPath                 -> m (Maybe File)
+  , _findLanguage          :: ProjectDir -> LanguageBuildFileMapping -> m (Maybe Language)
+  , _executeProjectScript  :: ConfigDir  -> RepoPath                 -> m T.Text
+  , _executeLanguageScript :: ConfigDir  -> Language                 -> m T.Text
+  , _executeDefaultScript  :: ConfigDir                              -> m T.Text
+  }
 
 joinConfig :: ConfigDir -> RepoPath -> Directory
 joinConfig (ConfigDir dir) (RepoPath paths) = Directory $ T.intercalate "/" (toList $ dir <| paths)
