@@ -30,8 +30,8 @@ haskellMapping  =
 languageMappings :: LanguageBuildFileMapping
 languageMappings = scalaMapping <| rubyMapping <| (pure haskellMapping)
 
-findLanguage :: Monad m => ProjectDir -> LanguageBuildFileMapping -> (ProjectDir -> m [File]) -> m (Maybe Language)
-findLanguage projDir lbFiles fileFinder = do
+findLanguage :: Monad m => (ProjectDir -> m [File]) -> ProjectDir -> LanguageBuildFileMapping ->  m (Maybe Language)
+findLanguage fileFinder projDir lbFiles = do
   files <- fileFinder projDir
   let maybeFound = find (hasLanguageBuildFile files) lbFiles
   pure $ fmap _language maybeFound

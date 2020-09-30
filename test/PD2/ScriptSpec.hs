@@ -31,7 +31,6 @@ unit_hasScript_script_not_found =
       actual      = hasScript fileMatcher configDir repoPath
   in actual @?= expected
 
-
 unit_executeLanguageScript_has_script :: Assertion
 unit_executeLanguageScript_has_script =
   let
