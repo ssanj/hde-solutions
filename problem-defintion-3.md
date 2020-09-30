@@ -2,7 +2,7 @@
 
 You are given a checkout directory, a folder path and a config directory. Together the checkout directory + folder path form the project directory. You need to look for an executable script (`script.sh`) in the following order:
 
-- Look for the script in the config folder under the supplied folder path. If found execute it and return the result
+- Look for the script in the config folder under the supplied folder path. if found execute it and return the result
 
 Eg:
 ```
@@ -38,25 +38,36 @@ Every location searched for should be logged to stdout (possibly at the end of t
 
 Example execution log:
 ```
-searching configDir/some/folder/path
-Didn't find matching configDir/some/folder/path/script.sh
-searching checkoutDir/some/folder/path for scala build file (build.sbt)
-searching checkoutDir/some/folder/path for ruby build file (Gemfile)
-searching checkoutDir/some/folder/path for haskell build files (*.cabal, stack.yaml)
+searching for project script in configDir/some/folder/path
+searching for scala language build file (build.sbt) in checkoutDir/some/folder/path
+searching for ruby language build file (Gemfile) in checkoutDir/some/folder/path
+searching for haskell language build file (*.cabal) in checkoutDir/some/folder/path
+searching for haskell language build file (stack.yaml) in checkoutDir/some/folder/path
 found haskell build file (stack.yaml)
-looking for configDir/haskell/script.sh
-haskell script file not found
+looking for haskell script in configDir/haskell/script.sh
 executing default script at: configDir/script.sh
 ```
 
-If any of the script executions fail, write the following to stdout: "script execution failed for `<script path>` because of `<error reason>`".
+If any of the script executions fail, write the following to stdout: "script execution failed for `<script path>` because of `<error reason>`", where `<script>` path is the path to the script that failed and `<error reason>` is the reason it failed.
 
 ## Testing Criteria
 
-You need to be able to test the following conditions
+You need to be able to test the following conditions:
 
-- If the project directory has a corresponding folder path in the config directory with an executable script, it gets executed.
-- If the project directory has a corresponding folder path in the config directory without an executable script, fall back to language-based execution.
-- If the project directory matches the Scala language and has a matching script under configDir/scala folder, verify that the script for scala is executed.
-- If the project directory matches the Ruby language and doesn't have a matching script under config/ruby folder, it should run the default script if none are found. Verify the execution log tracks the path taken to find the default script
-- When a script execution fails, the default error handler writes a message to stdout.
+### case: Has a project script, runs project script
+
+If the project directory has a corresponding folder path in the config directory with an executable script, it gets executed and the output result is as expected. Ensure no other scripts are executed and languages are not searched for.
+
+### case: No project script, has language script, runs language script
+
+Look for a matching language in the project folder and execute the script in the config/language folder if found. Ensure no other scripts are executed.
+
+### case: No project script, no language script, runs default script
+
+If either the language or language script is not found then the default script should be executed and the output verified.
+
+### case: If any script execution fails ensure the default handler is invoked
+
+### case: Given a project that does not have a project script or language script ensure the default script is executed and the log follows all the options tried.
+
+Verify the execution log tracks the path taken to find the default script

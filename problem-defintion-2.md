@@ -38,18 +38,20 @@ Don't handle an file or execution errors at this point. Assume the default scrip
 
 The output of each script needs to be verified (if run)
 
+Create any data structures necessary. Use any libraries you like.
+
 ## Testing Criteria
 
 You need to be able to test the following conditions:
 
-### case: Has a project script
+### case: Has a project script, runs project script
 
 If the project directory has a corresponding folder path in the config directory with an executable script, it gets executed and the output result is as expected. Ensure no other scripts are executed and languages are not searched for.
 
-### case: No project script, has language script
+### case: No project script, has language script, runs language script
 
-Look for a matching language in the project folder and execute the script in the config/language folder if found.
+Look for a matching language in the project folder and execute the script in the config/language folder if found. Ensure no other scripts are executed.
 
-### case: No project script, no language script, run default script
+### case: No project script, no language script, runs default script
 
 If either the language or language script is not found then the default script should be executed and the output verified.
